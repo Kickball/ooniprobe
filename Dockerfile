@@ -1,6 +1,6 @@
-ARG OONIPROBE_VERSION
-
 FROM debian:stable-slim
+
+ARG OONIPROBE_VERSION
 
 LABEL maintainer="Kickball"
 LABEL org.ooni.ooniprobe.version=${OONIPROBE_VERSION}
