@@ -2,6 +2,8 @@
 
 Using this container you can have [The Open Observatory of Network Interference (OONI)'s Probe](https://github.com/ooni/probe-cli) up and running in minutes. The probe is an open source tool designed to collect information about network censorship and surveillance, which is published for use in research.
 
+A full list of tests ran by the tool can be found on [OONI's website](https://ooni.org/nettest/).
+
 ## Risks
 
 The OONI probe is designed to measure censorship and surveillance of networks. As part of its tests, it will attempt to connect to websites which could be provocative, objectionable or illegal in some countries.
@@ -26,7 +28,7 @@ It is recommended that most users use the `:release` tag.
 
 See the [tags tab](https://hub.docker.com/r/kickball/ooniprobe/tags) on Docker Hub for a list of all the supported tags.
 
-### Optional variables ###
+## Optional variables ##
 
 | Name  | Purpose | Default |
 |-------|---------|---------|
@@ -34,7 +36,7 @@ See the [tags tab](https://hub.docker.com/r/kickball/ooniprobe/tags) on Docker H
 
 ## Contributing ##
 
-We welcome contributions!  Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
+All contributions and feedback is welcome! Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
 
 ## License ##
 
