@@ -1,1 +1,1 @@
-podman build --build-arg ver=3.16.3 -t ooniprobe . 
+podman build --build-arg OONIPROBE_VERSION=3.16.3 --build-arg OONIPROBE_UPLOAD_RESULTS=true -t ooniprobe .
