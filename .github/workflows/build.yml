@@ -1,6 +1,6 @@
 ---
 
-name: Build
+name: build
 
 on:
   workflow_call:
