@@ -44,8 +44,4 @@ jobs:
             type=sha
       - name: Retrieve Version from Git Tag
         id: version_retrieval
-        run: |
-          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-          echo "Tag name from github.action_ref: ${{ github.action_ref }}"
-          echo ::set-output name=version::${{  github.ref_name }}
+        run: echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
