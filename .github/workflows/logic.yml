@@ -19,10 +19,10 @@ jobs:
     uses: ./.github/workflows/build.yml
     needs: [config]
     with:
-      platforms: ${{ needs.metadata.outputs.platforms }}
-      image_tags: ${{ needs.metadata.outputs.image_tags }}
+      platforms: ${{ needs.config.outputs.platforms }}
+      image_tags: ${{ needs.config.outputs.image_tags }}
       build_args: |
-        OONIPROBE_VERSION=${{ needs.metadata.outputs.version }}
+        OONIPROBE_VERSION=${{ needs.config.outputs.version }}
     secrets:
       dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
