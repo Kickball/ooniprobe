@@ -28,6 +28,7 @@ jobs:
 
   build-push:
     name: "Build and push container image"
+    # Supported Runner Images: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
     runs-on: ubuntu-22.04
 
     steps:
