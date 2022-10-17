@@ -9,7 +9,7 @@ on:
         description: "Container image name"
         required: false
         type: string
-        value: kickball/ooniprobe
+        default: kickball/ooniprobe
     outputs:
       platforms:
         description: "Platforms to build"
