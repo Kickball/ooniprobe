@@ -1,0 +1,50 @@
+---
+
+name: config
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        description: "Container image name"
+        required: true
+        type: string
+        value: kickball/ooniprobe
+    outputs:
+      platforms:
+        description: "Platforms to build"
+        value: linux/amd64
+        #,linux/arm/v6,linux/arm/v7,linux/arm64
+      image_tags:
+        description: "The container image tags"
+        value: ${{ jobs.metadata.outputs.image_tags }}
+      version:
+        description: "The software and container image version determined from the tag"
+        value: ${{ jobs.metadata.outputs.version }}
+
+jobs:
+  metadata:
+    name: "Determine metadata input variables"
+    runs-on: ubuntu-22.04
+    outputs:
+      image_tags: ${{ steps.docker_meta.outputs.tags }}
+      version: ${{ steps.version_retrieval.outputs.version }}
+    steps:
+      - name: Determine container metadata
+        id: docker_meta
+        uses: docker/metadata-action@v4.1.0
+        with:
+          images: |
+            ${{ inputs.image_name }}
+          tags: |
+            type=semver,pattern={{version}},enable=${{ github.event_name == 'tag' }}
+            type=semver,pattern={{major}},enable=${{ github.event_name == 'tag' }}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ github.event_name == 'tag' }}
+            type=sha
+      - name: Retrieve Version from Git Tag
+        id: version_retrieval
+        run: |
+          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+          echo "Tag name from github.action_ref: ${{ github.action_ref }}"
+          echo ::set-output name=version::${{  github.ref_name }}

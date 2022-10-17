@@ -1,0 +1,26 @@
+---
+
+name: logic
+
+on:
+  push:
+#    branches:
+#      - main
+    tags:
+      - '*'
+
+jobs:
+
+  config:
+    name: "Config"
+    uses: ./.github/workflows/_config.yml
+
+  build:
+    # Supported Runner Images: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+    runs-on: ubuntu-22.04
+    neeeds: [config]
+    with:
+      platforms: ${{ needs.metadata.outputs.platforms }}
+      image_tags: ${{ needs.metadata.outputs.image_tags }}
+      build_args: |
+        OONIPROBE_VERSION=${{ needs.metadata.outputs.version }}
