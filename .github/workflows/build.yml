@@ -19,6 +19,13 @@ on:
         default: local/test-image:latest
         required: true
         type: string
+    secrets:
+      dockerhub_username:
+        description: "Username for Dockerhub access"
+        required: true
+      dockerhub_token:
+        description: "Token for DockerHub access"
+        required: true
 
 jobs:
 
@@ -34,8 +41,8 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: ${{ secrets.dockerhub_username }}
+        password: ${{ secrets.dockerhub_token }}
 
     - name: Setup Docker QEMU
       uses: docker/setup-qemu-action@v2.1.0
