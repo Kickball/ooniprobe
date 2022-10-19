@@ -30,9 +30,16 @@ See the [tags tab](https://hub.docker.com/r/kickball/ooniprobe/tags) on Docker H
 
 ## Optional variables ##
 
+The below are environment variables which can be specified a run-time (so they do not require rebuilding the container image) to alter the containers behaviour.
+
+They can be used as follows: `docker run --rm --env VARIABLE_NAME='$variable_value' kickball/ooniprobe:3.16.3`.
+
+As an example; `docker run --rm --env OONIPROBE_UPLOAD_RESULTS='false' --env OONIPROBE_DEBUG='true' kickball/ooniprobe:3.16.3`, would disable the public upload of the scan results and enable debug information.
+
 | Name  | Purpose | Default |
 |-------|---------|---------|
-| `UPLOAD_RESULTS` | This is a boolean (true or false) option which indicates if the measurement results should be automatically uploaded to the OONI collectors. | `true` |
+| `OONIPROBE_UPLOAD_RESULTS` | This is a boolean (true or false) option which determines if the measurement results should be automatically uploaded to the OONI collectors. | `true` |
+| `OONIPROBE_DEBUG` | This is a boolean (true or false) option which determines whether additional debug information should be logged during container runtime. | `false` |
 
 ## Contributing ##
 
