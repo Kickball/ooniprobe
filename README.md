@@ -41,6 +41,10 @@ As an example; `docker run --rm --env OONIPROBE_UPLOAD_RESULTS='false' --env OON
 | `OONIPROBE_UPLOAD_RESULTS` | This is a boolean (true or false) option which determines if the measurement results should be automatically uploaded to the OONI collectors. | `true` |
 | `OONIPROBE_DEBUG` | This is a boolean (true or false) option which determines whether additional debug information should be logged during container runtime. | `false` |
 
+## FAQ ##
+
+You can find answers to frequently asked questions on our [FAQ](FAQ.md).
+
 ## Contributing ##
 
 All contributions and feedback is welcome! Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
