@@ -1,5 +1,8 @@
 # ooniprobe #
 
+![GitHub](https://img.shields.io/github/license/kickball/ooniprobe)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/kickball/ooniprobe?label=release)
+
 Using this container you can have [The Open Observatory of Network Interference (OONI)'s Probe](https://github.com/ooni/probe-cli) up and running in minutes. The probe is an open source tool designed to collect information about network censorship and surveillance, which is published for use in research.
 
 A full list of tests ran by the tool can be found on [OONI's website](https://ooni.org/nettest/).
