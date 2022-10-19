@@ -17,7 +17,7 @@ LABEL org.opencontainers.image.url=https://github.com/Kickball/ooniprobe
 LABEL org.opencontainers.image.source=https://github.com/Kickball/ooniprobe
 LABEL org.opencontainers.image.licenses=GPL-3.0
 
-# Install dependencies and ooniprobe. Add ooniprobe user and group. Agree to ooniprobe process and risks.
+# Install dependencies and ooniprobe. Agree to ooniprobe process and risks.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gnupg gosu && \
     apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50' && \
