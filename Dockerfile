@@ -19,7 +19,7 @@ LABEL org.opencontainers.image.licenses=GPL-3.0
 
 # Install dependencies and ooniprobe. Agree to ooniprobe process and risks.
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gnupg gosu && \
+    apt-get install -y --no-install-recommends gnupg && \
     apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50' && \
     echo "deb http://deb.ooni.org/ unstable main" | tee /etc/apt/sources.list.d/ooniprobe.list && \
     apt-get update && \
@@ -30,5 +30,7 @@ RUN apt-get update && \
 
 COPY launcher.sh .
 COPY --chown=ooniprobe:ooniprobe config.json /var/lib/ooniprobe/.ooniprobe/config.json
+
+USER ooniprobe:ooniprobe
 
 ENTRYPOINT [ "./launcher.sh" ]
