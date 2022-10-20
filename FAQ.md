@@ -1,6 +1,6 @@
 # Frequently Asked Questions #
 
-This page contains answers to some frequently asked questions.
+This page contains answers to some frequently asked questions. You can also find the FAQ for OONI Probe itself on [their website](https://ooni.org/support/faq).
 
 ## Why are there not images for all releases of the OONI Probe software? ##
 
