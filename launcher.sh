@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Variable handling and switching between one off and automated
+
 # Display debug information is relevant environment variable is set.
 if [[ "$OONIPROBE_DEBUG" = "true" ]]; then
     echo "OONIPROBE_DEBUG environment variable is set to: ${OONIPROBE_DEBUG}"
@@ -12,4 +14,8 @@ fi
 sed "s/\"upload_results\": true/\"upload_results\": ${OONIPROBE_UPLOAD_RESULTS}/" /var/lib/ooniprobe/.ooniprobe/config.json --in-place
 
 # Run the OONI Probe
-ooniprobe run unattended
+while :;
+do
+    sleep $sleep
+    ooniprobe run unattended
+done
