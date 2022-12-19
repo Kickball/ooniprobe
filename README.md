@@ -17,7 +17,9 @@ Please review OONI's [disclaimer](https://ooni.org/support/ooni-probe-cli#discla
 
 ## Usage ##
 
-
+This docker image can be run in one of two modes (see [Optional variables](https://github.com/Kickball/ooniprobe#optional-variables) for technical info):
+* RunPersist - This is the default mode and will run the OONIProbe's test on a regular basis, with the same container running multiple jobs. This is suitable for normal Docker usage, Docker Compose, Nomad Services and Kubernetes Deployments.
+* RunOnce - This is an optional mode which will only run the OONIProbe's tests a single time before the container exits. This is suitable for Nomad Batch, Kubernetes CronJobs or other similar systems where an orchestrator handles scheduling the container.
 
 ## Image tags ##
 
@@ -37,16 +39,22 @@ See the [tags tab](https://hub.docker.com/r/kickball/ooniprobe/tags) on Docker H
 
 ## Optional variables ##
 
-The below are environment variables which can be specified a run-time (so they do not require rebuilding the container image) to alter the containers behaviour.
+The below are a list of customisations which can be specified a run-time (so they do not require rebuilding the container image) to alter the container's behaviour.
 
-They can be used as follows: `docker run --rm --env VARIABLE_NAME='$variable_value' kickball/ooniprobe:3.16.3`.
+They are a mix of:
+* Environment Variables - these must be specific with the syntax of `--env VARIABLE_NAME='$variable_value'` in the docker run command and must be anywhere in the command between the `run` and the container name (e.g. `kickball/ooniprobe:release`).
+* Positional Arguments - as suggested by the name, these variables are retrieved from specific positions of command. They must be listed after the container name (e.g. `kickball/ooniprobe:release`) without the need for prefixes, such as `--env VARIABLE_NAME=`.
 
-As an example; `docker run --rm --env OONIPROBE_UPLOAD_RESULTS='false' --env OONIPROBE_DEBUG='true' kickball/ooniprobe:3.16.3`, would disable the public upload of the scan results and enable debug information.
+They can be used as follows: `docker run --rm -d --env VARIABLE_NAME='$variable_value' kickball/ooniprobe:3.16.3 $mode_value $sleep_value`.
 
-| Name  | Purpose | Default |
-|-------|---------|---------|
-| `OONIPROBE_UPLOAD_RESULTS` | This is a boolean (true or false) option which determines if the measurement results should be automatically uploaded to the OONI collectors. | `true` |
-| `OONIPROBE_DEBUG` | This is a boolean (true or false) option which determines whether additional debug information should be logged during container runtime. | `false` |
+As an example; `docker run --rm -d --env OONIPROBE_UPLOAD_RESULTS='false' --env OONIPROBE_DEBUG='true' kickball/ooniprobe:3.16.3 RunPersist 1800`, would disable the public upload of the scan results, enable debug information, configure the container to run in persistent/repeat mode at an interval of 30 minutes instead of the default 60 minutes.
+
+| Name  | Type |Purpose | Default |
+|-------|---------|---------|---------|
+| `OONIPROBE_UPLOAD_RESULTS` | Environment Variable | This is a boolean (true or false) option which determines if the measurement results should be automatically uploaded to the OONI collectors. | `true` |
+| `OONIPROBE_DEBUG` | Environment Variable | This is a boolean (true or false) option which determines whether additional debug information should be logged during container runtime. | `false` |
+| `mode` | Positional Argument (1) | This variable will determine whether the container will run the test once and exit (if in `RunOnce` mode) or will run the tests at a regular interval (if in `RunPersist` mode, with the interval determined by the `sleep` argument) | `RunPersist` |
+| `sleep` | Positional Argument (2) | This variable will determine how often the automated tests will run if the container is executed in `RunPersist` mode. | `3600` |
 
 ## FAQ ##
 
